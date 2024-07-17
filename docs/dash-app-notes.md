@@ -9,9 +9,11 @@
 - the dates and times that are available for a specific doctor are controlled by:
     - above onedrive excel file
     - get endpoint on hospycare server: 
-    ```
-    curl 'http://nwcdxb.fortiddns.com:6060/hospynwc/r_appointment_rep?p_orgid=1&p_oprid=1&p_mp_rid=44&p_mp_uid=ERP&p_mp_sid=aafffjbedc&p_mp_output=H&p_mp_orientation=P&p_frdt=16/Jul/2024&p_todt=16/Aug/2024&p_e=&p_d=4&p_sp=&p_p=&p_userid=&p_wise=&p_wise=&p_status=C&P_FRTIME=&P_TOTIME=&P_NOSHOW=N&P_PIN=&p_refdocid=&p_reftype=&p_enttype=&p_mob='
-    ```
+        - need to use selenium to get get p_mp_sid -- and could use selenium on https://felix-seifert.github.io/serverless-on-heroku/ 
+        - find the p_mp_sid then use it in the following curl command
+        ```
+        curl 'http://nwcdxb.fortiddns.com:6060/hospynwc/r_appointment_rep?p_orgid=1&p_oprid=1&p_mp_rid=44&p_mp_uid=ERP&p_mp_sid=aafffjbedc&p_mp_output=H&p_mp_orientation=P&p_frdt=16/Jul/2024&p_todt=16/Aug/2024&p_e=&p_d=4&p_sp=&p_p=&p_userid=&p_wise=&p_wise=&p_status=C&P_FRTIME=&P_TOTIME=&P_NOSHOW=N&P_PIN=&p_refdocid=&p_reftype=&p_enttype=&p_mob='
+        ```
 - Patient chooses in the following order
     - date
     - time

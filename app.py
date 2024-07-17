@@ -4,8 +4,15 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
+from whitenoise import WhiteNoise
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Reference the underlying flask app (Used by gunicorn webserver in Heroku production deployment)
+server = app.server
+
+# Enable Whitenoise for serving static files from Heroku (the /static folder is seen as root by Heroku)
+server.wsgi_app = WhiteNoise(server.wsgi_app, root="static/")
 
 
 # Define Dash layout
@@ -103,4 +110,4 @@ def update_paragraph(pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=False, host="0.0.0.0", port=8050)
